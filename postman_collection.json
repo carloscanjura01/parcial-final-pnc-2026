@@ -1,0 +1,232 @@
+{
+  "info": {
+    "name": "Library API",
+    "_postman_id": "library-api-collection",
+    "description": "Library management API collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "bookId", "value": "00000000-0000-0000-0000-000000000001" },
+    { "key": "lectorId", "value": "00000000-0000-0000-0000-000000000002" }
+  ],
+  "item": [
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": ["{{baseUrl}}"],
+              "path": ["books"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"genre\": \"novel\",\n  \"isbn\": \"978-0132350884\",\n  \"available\": true,\n  \"availableCount\": 5\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Get All Books",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": ["{{baseUrl}}"],
+              "path": ["books"]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Get All Books (filtered)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/books?author=Robert C. Martin&genre=novel",
+              "host": ["{{baseUrl}}"],
+              "path": ["books"],
+              "query": [
+                { "key": "author", "value": "Robert C. Martin" },
+                { "key": "genre", "value": "novel" }
+              ]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Get Book by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/books/{{bookId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["books", "{{bookId}}"]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Get Genres Available",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/books/genres-available",
+              "host": ["{{baseUrl}}"],
+              "path": ["books", "genres-available"]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/books/{{bookId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["books", "{{bookId}}"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Code (Updated)\",\n  \"author\": \"Robert C. Martin\",\n  \"genre\": \"science\",\n  \"isbn\": \"978-0132350884\",\n  \"available\": true,\n  \"availableCount\": 3\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/books/{{bookId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["books", "{{bookId}}"]
+            },
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lectors",
+      "item": [
+        {
+          "name": "Register Lector",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/lectors/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["lectors", "register"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John\",\n  \"lastname\": \"Doe\",\n  \"dui\": \"01234567-8\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Get All Lectors",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/lectors",
+              "host": ["{{baseUrl}}"],
+              "path": ["lectors"]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Get Lector by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/lectors/{{lectorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["lectors", "{{lectorId}}"]
+            },
+            "header": []
+          }
+        },
+        {
+          "name": "Update Lector",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/lectors/{{lectorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["lectors", "{{lectorId}}"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John\",\n  \"lastname\": \"Smith\",\n  \"dui\": \"01234567-8\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Delete Lector",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/lectors/{{lectorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["lectors", "{{lectorId}}"]
+            },
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movements",
+      "item": [
+        {
+          "name": "Borrow Book",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/movements/borrow",
+              "host": ["{{baseUrl}}"],
+              "path": ["movements", "borrow"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-0132350884\",\n  \"email\": \"john.doe@library.com\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Return Book",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/movements/return",
+              "host": ["{{baseUrl}}"],
+              "path": ["movements", "return"]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-0132350884\",\n  \"email\": \"john.doe@library.com\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
