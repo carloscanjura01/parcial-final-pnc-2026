@@ -1,4 +1,4 @@
-# [Nombre] [Carné]
+# Carlos Canjura Paz 00021622
 
 ## Indicaciones
 
